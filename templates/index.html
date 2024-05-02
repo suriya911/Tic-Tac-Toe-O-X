@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <h1>Welcome to Tic Tac Toe</h1>
+    <div class="button-container">
+        <button class="start-button" onclick="startGame()">Start Game</button>
+        <button class="high-score-button" onclick="showHighScores()">High Scores</button>
+    </div>
+
+    <script>
+        function startGame() {
+            // Redirect to the game page
+            window.location.href = "/play";
+        }
+
+        function showHighScores() {
+            // Implement high scores functionality here
+            alert("High scores functionality is coming soon!");
+        }
+    </script>
+</body>
+</html>
