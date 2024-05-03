@@ -4,17 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Tic Tac Toe</h1>
-    <table>
-        {% for row in board %}
+    <h1 id="heading">Tic Tac Toe</h1>
+    <table id="board">
+        {% for row in range(3) %}
             <tr>
-                {% for cell in row %}
-                    <td>{{ cell }}</td>
+                {% for col in range(3) %}
+                    {% if board[row][col]=='O'%}{
+                        <td class="cell" data-value="{{ row * 3 + col }}">O</td>
+                    }
+                    {% elif board[row][col]=='X'%}{
+                        <td class="cell" data-value="{{ row * 3 + col }}">X</td>
+                    }
+                    {% else %}
+                        <td class="cell" data-value="{{ row * 3 + col }}"></td> <!-- Calculate the cell value based on row and col -->
+                    {% endif %}
                 {% endfor %}
             </tr>
         {% endfor %}
-    </table>
+    </table>    
+    <br>
+    <br>
+    <div id="score">
+        Score : <span id="score-value">0</span>
+    </div>
+
+     <!-- Back button -->
+     <button class="back-button" onclick="goBack()"> &larr; Back</button>
+
+    <script>
+
+        // JavaScript function to navigate back 
+        function goBack() {
+            window.location.href="/";
+        }
+
+        document.querySelectorAll('.cell').forEach(cell => {
+            cell.addEventListener('click', () => {
+                // Extract the value of the clicked cell from the data-value attribute
+                const move = parseInt(cell.getAttribute('data-value'));
+                console.log(move); // For testing purposes
+                // Redirect to the game route with the move parameter
+                window.location.href = `/play?move=${move}`;
+            });
+        });
+    </script>
 </body>
 </html>
